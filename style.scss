@@ -1,0 +1,133 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // 10px
+  font-family: 'Poppins', sans-serif; // 'Montserrat', 'Roboto';
+}
+
+body {
+  font-size: 1.6rem;
+  min-height: 100vh;
+
+  .counter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    .nums {
+      color: #3498db;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+      width: 250px;
+      height: 50px;
+
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        // hide numbers 120deg
+        transform: translate(-50%, -50%) rotate(120deg);
+        transform-origin: bottom center;
+      }
+
+      // number in
+      span.in {
+        transform: translate(-50%, -50%) rotate(0deg);
+        animation: goIn 0.5s ease-in-out;
+      }
+      // number out
+      span.out {
+        animation: goOut 0.5s ease-in-out;
+      }
+    }
+
+    h4 {
+      font-size: 20px;
+      margin: 5px;
+      text-transform: uppercase;
+    }
+  }
+
+  // hide whole counter with numbers
+  .counter.hide {
+    transform: translate(-50%, -50%) scale(0);
+    animation: hide 0.2s ease-out;
+  }
+
+  .final {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  // show final GO Replay button
+  .final.show {
+    transform: translate(-50%, -50%) scale(1);
+    animation: show 0.2s ease-out;
+  }
+}
+
+// hide counter animation
+@keyframes hide {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+// show final animation
+@keyframes show {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  // bounce to scale(1.4) to give it a big effect, then scale to 0
+  30% {
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+// go in number animation
+@keyframes goIn {
+  0% {
+    transform: translate(-50%, -50%) rotate(120deg);
+  }
+  // move to -20deg, to give it effect of moving to much, then back a little
+  30% {
+    transform: translate(-50%, -50%) rotate(-20deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(10deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+// go out number animation
+@keyframes goOut {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(10deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-120deg);
+  }
+}
